@@ -1,6 +1,24 @@
 *** Settings ***
-Library  SeleniumLibrary
+Library    SeleniumLibrary
+Suite Setup    Open Browser To Login Page
+Suite Teardown    Close Browser
+
+*** Variables ***
+${URL}     http://localhost:3000
+${EMAIL}   teste@gmail.com
+${SENHA}   12345678
+${BROWSER}    Chrome
 
 *** Test Cases ***
-Teste Simples
-    Log To Console  Teste funcionando!
+Login com Sucesso
+    Input Text    name=email    ${EMAIL}
+    Input Text    name=password    ${SENHA}
+    Click Button    xpath=//button[text()='Login']
+    Sleep    1s
+    Location Should Contain    dashboard
+
+*** Keywords ***
+Open Browser To Login Page
+    Open Browser    ${URL}    ${BROWSER}
+    Maximize Browser Window
+    Click Element    id=form-open
