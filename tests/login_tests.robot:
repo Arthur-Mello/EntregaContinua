@@ -1,0 +1,6 @@
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Test Cases ***
+Teste Simples
+    Log To Console  Teste funcionando!
